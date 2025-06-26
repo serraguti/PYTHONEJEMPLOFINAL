@@ -24,3 +24,12 @@ def getDepartamentos():
         dept.localidad = item["localidad"]
         data.append(dept)
     return data
+
+#METODO PARA INSERTAR UN DEPARTAMENTO
+def insertDepartamento(departamento: Departamento):
+    request = "api/departamentos"
+    #Convertimos el model a objeto diccionario/json
+    jsonDept = {"numero": departamento.id, "nombre": departamento.nombre
+            , "localidad": departamento.localidad}
+    response = requests.post(api_url + request, json=jsonDept)
+    return response.status_code
